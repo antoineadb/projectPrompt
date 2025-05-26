@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Veste",
+    "price": 90,
+    "stock": 40,
+    "id": "1747829321558"
+  },
+  {
+    "name": "Robe d'été en lin",
+    "price": "49,99",
+    "stock": 3,
+    "id": "1747830778661"
+  },
+  {
+    "name": "Blazer noir classique",
+    "price": 89,
+    "stock": 3,
+    "id": "1747830799403"
+  },
+  {
+    "name": "Jean slim bleu",
+    "price": 59,
+    "stock": 8,
+    "id": "1747830828942"
+  },
+  {
+    "name": "Sneakers blanches unisexes",
+    "price": "74,99",
+    "stock": 6,
+    "id": "1747830858442"
+  },
+  {
+    "name": "Sac à main cuir veg",
+    "price": 129,
+    "stock": 2,
+    "id": "1747830885893"
+  },
+  {
+    "name": "Bonnet de bain XXXL",
+    "price": "5,99",
+    "stock": 18,
+    "id": "1747830910679"
+  },
+  {
+    "name": "test",
+    "price": "122",
+    "stock": "45",
+    "id": "1747836464210"
+  }
+]

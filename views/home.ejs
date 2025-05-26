@@ -1,0 +1,86 @@
+<%- include('common/header') %>
+<br><br><br>
+<div class="d-flex justify-content-center align-items-center" style="width: 100%; flex-direction: column;">
+  <span>
+    <span style="float:left">
+      <textarea id="myTextarea" style="background: white;color: darkblue;width: 400px;height: 40px; margin-bottom: 10px;padding: 10px;"></textarea>
+    </span>
+      <span style="float:right;margin-top: 4px;margin-left: 5px;">
+        <img src="/img/trash.png" id="clearBtn" style="width:30px; cursor:pointer;" alt="Effacer">
+    </span>
+  </span>
+  <canvas id="myCanvas" width="600" height="400" style="display: block;margin-left: 220px;margin-top: 50px;"></canvas>
+</div>
+<script>
+  const textarea = document.getElementById('myTextarea');
+  const displayDiv = document.getElementById('numberDisplay');
+  const canvas = document.getElementById('myCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function project(x, y, z) {
+    const scale = 500 / (z + 500);
+    const px = x * scale + 150;
+    const py = y * scale + 100;
+    return {x: px, y: py};
+  }
+
+  const points3D = [];
+  const numPoints = 1000;
+  for (let i = 0; i < numPoints; i++) {
+    points3D.push({
+      x: Math.random() * 200 - 100,
+      y: Math.random() * 200 - 100,
+      z: Math.random() * 300 - 150
+    });
+  }
+
+  function drawCurve(points) {
+    ctx.fillStyle = '#F8F9FA';
+    ctx.fillRect(0, 0, 600, 400);
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    points.forEach((point, index) => {
+      const projected = project(point.x, point.y, point.z);
+      if (index === 0) {
+        ctx.moveTo(projected.x, projected.y);
+      } else {
+        ctx.lineTo(projected.x, projected.y);
+      }
+    });
+    ctx.stroke();
+  }
+
+  function clearCanvas() {
+    ctx.fillStyle = '#F8F9FA';
+    ctx.fillRect(0, 0, 3000, 2000);
+  }
+
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    textarea.value = '';
+    clearCanvas();
+    displayDiv.innerHTML = '';
+  });
+
+  textarea.addEventListener('input', () => {
+    const text = textarea.value;
+    const length = text.length;
+    const points = [];
+
+    for (let i = 0; i < length; i++) {
+      const point = points3D[i % points3D.length];
+      points.push({
+        x: point.x + Math.sin(i) * 50,
+        y: point.y + Math.cos(i) * 50,
+        z: point.z + Math.sin(i / 2) * 50
+      });
+    }
+
+    drawCurve(points);
+  });
+</script>
+
+<br><br><br><br>
+<%- include('common/footer') %>
+</body>
+</html>
